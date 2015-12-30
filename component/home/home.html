@@ -1,0 +1,105 @@
+<div ng-style="{'background-color':'dodgerblue','height':'100%'}" layout="column" layout-fill>
+<header>
+       <md-toolbar class='md-medium' ng-style="{'background-color':'rgb(33,150,243)'}">
+         <div class="md-toolbar-tools">
+             <h1>ComicsThor</h1>
+             <span flex align="right">
+               <h1>Hello User</h1>
+               <md-button class="md-fab md-mini">
+                 <md-tooltip md-direction="left">
+                    Logout
+                </md-tooltip>
+                  <md-icon md-svg-icon="assets/icons/logout_door.svg"></md-icon>
+                </md-button>
+             </span>
+         </div>
+       </md-toolbar>
+   </header>
+   <section layout="row" flex>
+   <md-sidenav class="md-sidenav-left md-whiteframe-z5" md-component-id="left" md-is-locked-open="true" ng-style="{'width':'200'}">
+     <md-toolbar>
+       <h1 class="md-toolbar-tools">Most Popular</h1>
+
+
+
+     </md-toolbar>
+     <md-content >
+       <md-input-container >
+           <label>Search</label>
+            <md-icon md-svg-src="assets/icons/search.svg"></md-icon>
+           <input  ng-model="sidebar.search">
+         </md-input-container>
+
+         <md-input-container class="md-block" flex-gt-sm>
+             <label>Order by</label>
+             <md-select ng-model="search.genre">
+               <md-option ng-repeat="comic in comics.list" value="{{comic.genre}}">
+                 {{comic.genre}}
+               </md-option>
+             </md-select>
+           </md-input-container>
+
+         <md-input-container class="md-block" flex-gt-sm>
+             <label>Genre</label>
+             <md-select ng-model="search.genre">
+               <md-option ng-repeat="comic in comics.list" value="{{comic.genre}}">
+                 {{comic.genre}}
+               </md-option>
+             </md-select>
+           </md-input-container>
+
+           <md-input-container class="md-block" flex-gt-sm>
+               <label>Characters</label>
+               <md-select ng-model="search.characters">
+                 <md-option ng-repeat="comic in comics.list" value="{{comic.characters}}">
+                   {{comic.characters}}
+                 </md-option>
+               </md-select>
+             </md-input-container>
+     </md-content>
+   </md-sidenav>
+   <md-content flex >
+     <div flex>
+    
+       <md-content >
+          <md-tabs class="md-primary md-hue-1" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
+
+            <md-tab id="tab1">
+              <md-tab-label>Genres</md-tab-label>
+              <md-tab-body>
+              Tab 1
+              </md-tab-body>
+            </md-tab>
+
+            <md-tab id="tab2">
+              <md-tab-label>Editions</md-tab-label>
+              <md-tab-body>
+              Tab 2
+              </md-tab-body>
+            </md-tab>
+
+            <md-tab id="tab3">
+              <md-tab-label>Characters</md-tab-label>
+              <md-tab-body>
+              Tab 3
+              </md-tab-body>
+            </md-tab>
+
+          </md-tabs>
+        </md-content>
+
+
+     </div>
+   </md-content>
+ </section>
+
+ <footer ng-style="{'background-color':'dodgerblue'}">
+       <div >
+          <a href="/#"> <md-icon md-svg-src="assets/icons/facebook.svg">  </md-icon></a>│
+          <a href="/#"> <md-icon md-svg-src="assets/icons/twitter.svg">   </md-icon></a>│
+          <a href="/#"> <md-icon md-svg-src="assets/icons/googleplus.svg"></md-icon></a>│
+          <a href="/#"> Sitemap    </a> │
+          <a href="/#"> Disclaimer </a> │
+       </div>
+ </footer>
+</div>
