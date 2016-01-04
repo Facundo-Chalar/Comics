@@ -1,10 +1,10 @@
-<div ng-style="{'background-color':'dodgerblue','height':'100%'}" layout="column" layout-fill>
+<div ng-style="{'background-color':'dodgerblue','height':'100%'}" layout="column" layout-fill >
 <header>
-       <md-toolbar class='md-medium' ng-style="{'background-color':'rgb(33,150,243)'}">
-         <div class="md-toolbar-tools">
+       <md-toolbar class='md-medium' ng-style="{'background-color':'rgb(33,150,243)'}" >
+         <div class="md-toolbar-tools" ng-controller="currentUserController">
              <h1>ComicsThor</h1>
              <span flex align="right">
-               <h1>Hello User</h1>
+               <h1>Hello {{currentUser()}}</h1>
                <md-button class="md-fab md-mini">
                  <md-tooltip md-direction="left">
                     Logout

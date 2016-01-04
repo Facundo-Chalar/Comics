@@ -46,7 +46,7 @@ app.factory('AuthenticationService', function ($http, SessionService) {
   'use strict';
 
   return {
-
+	
     login: function (user) {
 
       SessionService.currentUser = user;
@@ -68,7 +68,11 @@ app.factory('SessionService', function () {
   };
 });
 
-
+angular.module('comics').controller('currentUserController',function($scope,SessionService){
+    $scope.currentUser=function(){
+       return SessionService.currentUser.nickName;
+    }
+});
   </script>
 
 </head>
