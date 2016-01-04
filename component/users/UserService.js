@@ -1,5 +1,5 @@
 angular.module('comics').service('comics').service('UserService',function($localStorage,$filter,$cookies,AuthenticationService,SessionService,$location){
-		
+
         this.userList=[];
 
         this.addUser=function(user){
@@ -8,7 +8,7 @@ angular.module('comics').service('comics').service('UserService',function($local
                 this.newList=[];
                 this.newList.push(user);
                 $localStorage.userList=angular.toJson(this.newList);
-                alert('userAdded');
+
             }else{
               this.userList.push(user);
               $localStorage.userList=angular.toJson(this.userList);
@@ -37,22 +37,21 @@ angular.module('comics').service('comics').service('UserService',function($local
                 response = { success: true,message:'Login Ok' };
 				var today = new Date();
 				var expired = new Date(today);
-				expired.setDate(today.getDate() + 1); 
+				expired.setDate(today.getDate() + 1);
 				$cookies.put('user', user.nickName, {expires : expired });
 				AuthenticationService.login(user);
 				$location.url('/');
               } else {
                 response = { success: false, message: 'Username or password is incorrect' };
-              }
-              alert(response.message);
+              }            
             // callback(response);
         };
-		
-		
-		
+
+
+
 		this.loginAdmin = function() {
-      // this should be replaced with a call to your API for user verification (or you could also do it in the service)    
+      // this should be replaced with a call to your API for user verification (or you could also do it in the service)
 		AuthenticationService.login({name: 'Admin', role: 'admin'});
     };
-		
+
 });

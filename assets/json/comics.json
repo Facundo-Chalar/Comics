@@ -1,0 +1,29 @@
+[
+{
+  "title": "Batman Blood",
+  "image": "assets/img/batman-cover.jpg",
+  "description": "Batman blood movie comic",
+  "price": "19",
+  "ranking": "3",
+  "votes": "16",
+  "recommended": "true"
+},
+{
+  "title": "Superman",
+  "image": "assets/img/superman.jpg",
+  "description": "Superman comic",
+  "price": "22",
+  "ranking": "4",
+  "votes": "21",
+  "recommended": "true"
+},
+{
+  "title": "Flash",
+  "image": "assets/img/flash.jpg",
+  "description": "Flash Comic",
+  "price": "10",
+  "ranking": "2",
+  "votes": "12",
+  "recommended": "false"
+}
+]

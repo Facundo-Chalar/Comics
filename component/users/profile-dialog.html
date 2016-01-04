@@ -1,0 +1,45 @@
+<div layout-align="center center" class="login-form" ng-controller="currentUserController">
+  <form name="profileForm" ng-submit="">
+    <section layout="column"   layout-wrap>
+
+        <h3>Profile information</h3>
+        <md-input-container>
+            <label>User</label>
+             <md-icon md-svg-src="assets/icons/user-icon.svg" class="name"></md-icon>
+            <input  name="nickname"  ng-readonly="true" ng-model="currentUser().nickName" ng-readonly="true">
+        </md-input-container>
+
+
+
+        <md-input-container>
+          <label> First Name</label>
+          <md-icon md-svg-src="assets/icons/name-icon.svg" class="name"></md-icon>
+          <input ng-model="currentUser().firstName" ng-readonly="true">
+        </md-input-container>
+
+        <md-input-container>
+          <label> Last Name</label>
+          <md-icon md-svg-src="assets/icons/name-icon.svg" class="name"></md-icon>
+          <input ng-model="currentUser().lastName" ng-readonly="true">
+        </md-input-container>
+
+        <md-input-container>
+          <label> Email</label>
+          <md-icon md-svg-src="assets/icons/email-icon.svg" class="name"></md-icon>
+          <input type="email" name="email"   ng-readonly="true"  ng-model="currentUser().email">
+
+        </md-input-container>
+        <md-input-container>
+          <label> User type:</label>
+        <md-icon md-svg-src="assets/icons/user-icon.svg" class="name"></md-icon>
+          <input ng-readonly="true"  ng-model="currentUser().email">
+
+        </md-input-container>
+    </section>
+
+  <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+             <md-button class="md-raised md-primary" ng-click="cancel()">Close(ESC)</md-button>
+
+  </section>
+  </form>
+</div>

@@ -1,16 +1,24 @@
-<div ng-style="{'background-color':'dodgerblue','height':'100%'}" layout="column" layout-fill >
+<div ng-style="{'height':'100%'}" layout="column" layout-fill >
 <header>
        <md-toolbar class='md-medium' ng-style="{'background-color':'rgb(33,150,243)'}" >
          <div class="md-toolbar-tools" ng-controller="currentUserController">
              <h1>ComicsThor</h1>
+             
              <span flex align="right">
-               <h1>Hello {{currentUser()}}</h1>
-               <md-button class="md-fab md-mini">
+               <h1> <a href="" ng-click="showAdvanced($event)">Hello  {{currentUser().nickName}}</a></h1>
+
+               <md-button class="md-fab md-mini md-accent md-hue-1">
                  <md-tooltip md-direction="left">
-                    Logout
+                    Admin Tools
                 </md-tooltip>
-                  <md-icon md-svg-icon="assets/icons/logout_door.svg"></md-icon>
+                  <md-icon md-svg-icon="assets/icons/admin-icon.svg"></md-icon>
                 </md-button>
+                <md-button class="md-fab md-mini md-accent md-hue-1" ng-click="logout()">
+                  <md-tooltip md-direction="left">
+                     Logout
+                 </md-tooltip>
+                   <md-icon md-svg-icon="assets/icons/logout_door.svg"></md-icon>
+                 </md-button>
              </span>
          </div>
        </md-toolbar>
@@ -58,15 +66,88 @@
              </md-input-container>
      </md-content>
    </md-sidenav>
-   <md-content flex >
-     <div flex>
-    
-       <md-content >
+
+   <md-content flex  layout="column">
+
+     <div flex  layout="row" flex="20">
+
+      <md-card >
+        <md-card-content>
+           <img src="assets/img/batman.jpg" class="md-card-image" alt="image caption">
+        </md-card-content>
+       <md-card-title>
+         <md-card-title-text>
+           <span class="md-headline">Batman Bad Blood</span>
+           <span class="md-subhead">25% OFF!</span>
+         </md-card-title-text>
+         <md-card-title-media>
+           <div class="md-media-sm card-media"></div>
+         </md-card-title-media>
+       </md-card-title>
+       <md-card-actions layout="row" layout-align="end center">
+         <md-button class="md-primary md-hue-1">Buy it now!</md-button>
+       </md-card-actions>
+     </md-card>
+
+     <md-card>
+       <md-card-content>
+          <img src="assets/img/batman.jpg" class="md-card-image" alt="image caption">
+       </md-card-content>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Batman Bad Blood</span>
+          <span class="md-subhead">25% OFF!</span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-sm card-media"></div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-primary md-hue-1">Buy it now!</md-button>
+      </md-card-actions>
+    </md-card>
+
+    </div>
+     <div flex layout-fill>
+
+       <md-content ng-controller="comicsController" >
           <md-tabs class="md-primary md-hue-1" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
 
-            <md-tab id="tab1">
+            <md-tab id="comicsTab" >
+              <md-tab-label>Comics</md-tab-label>
+              <md-tab-body>
+
+                <div ng-repeat="comic in listacomics | filter:sidebar.search"  layout-fill>
+
+                  <md-card  >
+                                     <md-card-content>
+                                        <img src="{{comic.image}}" class="md-card-image" alt="image caption">
+                                     </md-card-content>
+                                    <md-card-title>
+                                      <md-card-title-text>
+                                        <span class="md-headline">{{comic.title}}</span>
+                                        <span class="md-subhead">{{comic.price}}</span>
+                                      </md-card-title-text>
+                                      <md-card-title-media>
+                                        <div class="md-media-sm card-media"></div>
+                                      </md-card-title-media>
+                                    </md-card-title>
+                                    <md-card-actions layout="row" layout-align="end center">
+                                      <md-button class="md-primary md-hue-1">Borrow!</md-button>
+                                      <md-button class="md-primary md-hue-1">Buy it now!</md-button>
+                                    </md-card-actions>
+                                  </md-card>
+</div>
+              </md-tab-body>
+            </md-tab>
+
+
+            <md-tab id="tab1" >
               <md-tab-label>Genres</md-tab-label>
               <md-tab-body>
+                <div ng-repeat="n in [42, 48, 43]">
+                  {{n}}
+                </div>
               Tab 1
               </md-tab-body>
             </md-tab>
@@ -85,10 +166,15 @@
               </md-tab-body>
             </md-tab>
 
+            <md-tab id="tab4">
+              <md-tab-label>Admin Users</md-tab-label>
+              <md-tab-body>
+              List of users:
+              </md-tab-body>
+            </md-tab>
+
           </md-tabs>
         </md-content>
-
-
      </div>
    </md-content>
  </section>

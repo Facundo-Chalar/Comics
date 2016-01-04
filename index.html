@@ -46,13 +46,13 @@ app.factory('AuthenticationService', function ($http, SessionService) {
   'use strict';
 
   return {
-	
+
     login: function (user) {
-
       SessionService.currentUser = user;
-	  alert('User Logged:'+SessionService.currentUser.nickName);
     },
-
+    logout: function(){
+      SessionService.currentUser=null;
+    },
     isLoggedIn: function () {
       return SessionService.currentUser !== null;
     }
@@ -60,18 +60,46 @@ app.factory('AuthenticationService', function ($http, SessionService) {
 });
 
 app.factory('SessionService', function () {
-
   'use strict';
-
   return {
     currentUser: null
   };
 });
 
-angular.module('comics').controller('currentUserController',function($scope,SessionService){
+angular.module('comics').controller('comicsController',function($scope,$http){
+      
+      $http.get('assets/json/comics.json').success(function(data) {
+      $scope.listacomics=data;
+      });
+});
+
+angular.module('comics').controller('currentUserController',function($scope,SessionService,AuthenticationService, $mdDialog,$location){
     $scope.currentUser=function(){
-       return SessionService.currentUser.nickName;
-    }
+       return SessionService.currentUser;
+    };
+
+    $scope.logout=function(){
+    AuthenticationService.logout();
+    $location.url('/login');
+    };
+    $scope.showAdvanced = function(ev) {
+      //Register Dialog config
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl: '/component/users/profile-dialog.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: true
+      })
+      .then(function() {
+        //Register acepted
+
+      }, function() {
+
+      });
+    };
+
 });
   </script>
 
