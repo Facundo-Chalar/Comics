@@ -1,29 +1,32 @@
 [
 {
-  "title": "Batman Blood",
+  "title": "Batman Bad Blood",
   "image": "assets/img/batman-cover.jpg",
-  "description": "Batman blood movie comic",
+  "description": "Batman bad blood movie comic",
   "price": "19",
-  "ranking": "3",
-  "votes": "16",
-  "recommended": "true"
+  "ranking": 7,
+  "votes": 3,
+  "searches": 250,
+  "recommended": true
 },
 {
   "title": "Superman",
   "image": "assets/img/superman.jpg",
   "description": "Superman comic",
   "price": "22",
-  "ranking": "4",
-  "votes": "21",
-  "recommended": "true"
+  "ranking": 5,
+  "votes": 2,
+  "searches": 40,
+  "recommended": true
 },
 {
   "title": "Flash",
   "image": "assets/img/flash.jpg",
   "description": "Flash Comic",
-  "price": "10",
-  "ranking": "2",
-  "votes": "12",
-  "recommended": "false"
+  "price": 2,
+  "ranking": 3,
+  "votes": 1,
+  "searches": 120,
+  "recommended": false
 }
 ]

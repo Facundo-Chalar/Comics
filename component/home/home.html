@@ -1,9 +1,9 @@
-<div ng-style="{'height':'100%'}" layout="column" layout-fill >
+<div ng-style="{'height':'100%'}" layout="column" layout-fill  ng-controller="comicsController">
 <header>
        <md-toolbar class='md-medium' ng-style="{'background-color':'rgb(33,150,243)'}" >
          <div class="md-toolbar-tools" ng-controller="currentUserController">
-             <h1>ComicsThor</h1>
-             
+             <h1>COMICS Thor    </h1> <md-icon md-svg-src="assets/icons/thor-hammer.svg" >  </md-icon>
+
              <span flex align="right">
                <h1> <a href="" ng-click="showAdvanced($event)">Hello  {{currentUser().nickName}}</a></h1>
 
@@ -25,90 +25,47 @@
    </header>
    <section layout="row" flex>
    <md-sidenav class="md-sidenav-left md-whiteframe-z5" md-component-id="left" md-is-locked-open="true" ng-style="{'width':'200'}">
+
      <md-toolbar>
-       <h1 class="md-toolbar-tools">Most Popular</h1>
-
-
+       <md-button class="md-raised" ng-click="predicate=''">
+         All
+         <md-tooltip md-direction="right">
+            Show all comics unsorted
+        </md-tooltip>
+       </md-button>
+       <md-button class="md-raised" ng-click="order('ranking')">Top Ranked
+         <md-tooltip md-direction="right">
+            Sort by user ranking
+        </md-tooltip>
+         <span class="sortorder" ng-show="predicate === 'ranking'" ng-class="{reverse:reverse}"></span>
+       </md-button>
+       <md-button class="md-raised" ng-click="showRecommendedOnly=!showRecommendedOnly">Recommended
+         <md-tooltip md-direction="right">
+            Show only our recommended comics!
+        </md-tooltip>
+       </md-button>
+       <md-button class="md-raised" ng-click="order('searches')">Top Searches
+         <md-tooltip md-direction="right">
+            Sort by most searched
+        </md-tooltip>
+                <span class="sortorder" ng-show="predicate === 'searches'" ng-class="{reverse:reverse}"></span>
+      </md-button>
 
      </md-toolbar>
+
      <md-content >
        <md-input-container >
            <label>Search</label>
             <md-icon md-svg-src="assets/icons/search.svg"></md-icon>
            <input  ng-model="sidebar.search">
          </md-input-container>
-
-         <md-input-container class="md-block" flex-gt-sm>
-             <label>Order by</label>
-             <md-select ng-model="search.genre">
-               <md-option ng-repeat="comic in comics.list" value="{{comic.genre}}">
-                 {{comic.genre}}
-               </md-option>
-             </md-select>
-           </md-input-container>
-
-         <md-input-container class="md-block" flex-gt-sm>
-             <label>Genre</label>
-             <md-select ng-model="search.genre">
-               <md-option ng-repeat="comic in comics.list" value="{{comic.genre}}">
-                 {{comic.genre}}
-               </md-option>
-             </md-select>
-           </md-input-container>
-
-           <md-input-container class="md-block" flex-gt-sm>
-               <label>Characters</label>
-               <md-select ng-model="search.characters">
-                 <md-option ng-repeat="comic in comics.list" value="{{comic.characters}}">
-                   {{comic.characters}}
-                 </md-option>
-               </md-select>
-             </md-input-container>
      </md-content>
    </md-sidenav>
 
    <md-content flex  layout="column">
 
-     <div flex  layout="row" flex="20">
 
-      <md-card >
-        <md-card-content>
-           <img src="assets/img/batman.jpg" class="md-card-image" alt="image caption">
-        </md-card-content>
-       <md-card-title>
-         <md-card-title-text>
-           <span class="md-headline">Batman Bad Blood</span>
-           <span class="md-subhead">25% OFF!</span>
-         </md-card-title-text>
-         <md-card-title-media>
-           <div class="md-media-sm card-media"></div>
-         </md-card-title-media>
-       </md-card-title>
-       <md-card-actions layout="row" layout-align="end center">
-         <md-button class="md-primary md-hue-1">Buy it now!</md-button>
-       </md-card-actions>
-     </md-card>
-
-     <md-card>
-       <md-card-content>
-          <img src="assets/img/batman.jpg" class="md-card-image" alt="image caption">
-       </md-card-content>
-      <md-card-title>
-        <md-card-title-text>
-          <span class="md-headline">Batman Bad Blood</span>
-          <span class="md-subhead">25% OFF!</span>
-        </md-card-title-text>
-        <md-card-title-media>
-          <div class="md-media-sm card-media"></div>
-        </md-card-title-media>
-      </md-card-title>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-primary md-hue-1">Buy it now!</md-button>
-      </md-card-actions>
-    </md-card>
-
-    </div>
-     <div flex layout-fill>
+     <div flex>
 
        <md-content ng-controller="comicsController" >
           <md-tabs class="md-primary md-hue-1" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
@@ -116,28 +73,37 @@
             <md-tab id="comicsTab" >
               <md-tab-label>Comics</md-tab-label>
               <md-tab-body>
-
-                <div ng-repeat="comic in listacomics | filter:sidebar.search"  layout-fill>
-
-                  <md-card  >
-                                     <md-card-content>
-                                        <img src="{{comic.image}}" class="md-card-image" alt="image caption">
+                <div ng-repeat="comic in listacomics |filter:sidebar.search |orderBy:predicate:reverse" >
+                  <md-card ng-show="(comic.recommended && showRecommendedOnly) || (!showRecommendedOnly)" ng-style="{'width':'35%'}">
+                            <md-card-content>
+                                 <img src="{{comic.image}}" class="md-card-image" alt="image caption">
                                      </md-card-content>
                                     <md-card-title>
                                       <md-card-title-text>
                                         <span class="md-headline">{{comic.title}}</span>
-                                        <span class="md-subhead">{{comic.price}}</span>
+                                        <span class="md-subhead">{{comic.description}}</span>
+                                        <span class="md-subhead">${{comic.price}}</span>
                                       </md-card-title-text>
                                       <md-card-title-media>
                                         <div class="md-media-sm card-media"></div>
                                       </md-card-title-media>
                                     </md-card-title>
-                                    <md-card-actions layout="row" layout-align="end center">
-                                      <md-button class="md-primary md-hue-1">Borrow!</md-button>
-                                      <md-button class="md-primary md-hue-1">Buy it now!</md-button>
+                                    <md-progress-linear md-mode="determinate" value="{{comic.ranking * 10}}">
+                                      <md-tooltip md-direction="top">
+                                        {{comic.ranking * 10}}
+                                     </md-tooltip>
+                                    </md-progress-linear>
+
+                                    <md-card-actions layout="row" layout-align="begin center">
+
+                                      <md-chips ng-show="comic.recommended">
+                                            <md-chip>Recommended</md-chip>
+                                      </md-chips>
+                                      <md-button class="md-primary md-raised">Borrow</md-button>
+                                      <md-button class="md-accent md-raised">Buy it now!</md-button>
                                     </md-card-actions>
                                   </md-card>
-</div>
+                  </div>
               </md-tab-body>
             </md-tab>
 
@@ -145,17 +111,15 @@
             <md-tab id="tab1" >
               <md-tab-label>Genres</md-tab-label>
               <md-tab-body>
-                <div ng-repeat="n in [42, 48, 43]">
-                  {{n}}
-                </div>
-              Tab 1
+
+               TODO:Tabs Content
               </md-tab-body>
             </md-tab>
 
             <md-tab id="tab2">
               <md-tab-label>Editions</md-tab-label>
               <md-tab-body>
-              Tab 2
+
               </md-tab-body>
             </md-tab>
 
@@ -166,12 +130,7 @@
               </md-tab-body>
             </md-tab>
 
-            <md-tab id="tab4">
-              <md-tab-label>Admin Users</md-tab-label>
-              <md-tab-body>
-              List of users:
-              </md-tab-body>
-            </md-tab>
+
 
           </md-tabs>
         </md-content>

@@ -64,13 +64,21 @@ app.factory('SessionService', function () {
   return {
     currentUser: null
   };
-});
+});    
 
 angular.module('comics').controller('comicsController',function($scope,$http){
-      
+
       $http.get('assets/json/comics.json').success(function(data) {
-      $scope.listacomics=data;
+        $scope.listacomics=data;
       });
+
+
+
+      $scope.order = function(predicate) {
+        $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+        $scope.predicate = predicate;
+
+      };
 });
 
 angular.module('comics').controller('currentUserController',function($scope,SessionService,AuthenticationService, $mdDialog,$location){
