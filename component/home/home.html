@@ -2,9 +2,9 @@
 <header>
        <md-toolbar class='md-medium' ng-style="{'background-color':'rgb(33,150,243)'}" >
          <div class="md-toolbar-tools" ng-controller="currentUserController">
-             <h1>COMICS Thor    </h1> <md-icon md-svg-src="assets/icons/thor-hammer.svg"  align="left">  </md-icon>
+             <h1>COMICS Thor    </h1>  <img src="assets/img/header.jpg" alt="image caption" align="right" ng-style="{'margin-left':'20%'}">  </md-icon>
 
-             <span  align="right">
+             <span  align="right" ng-style="{'margin-left':'10%'}">
                <h1> <a href="" ng-click="showAdvanced($event)">Hello  {{currentUser().nickName}}</a></h1>
 
                <md-button class="md-fab md-mini md-accent md-hue-1">
@@ -67,7 +67,7 @@
 
      <div>
        <md-content ng-controller="comicsController"  >
-          <md-tabs md-dynamic-height class="md-primary md-hue-1 maxedtab"  md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}" ng-style="'height':'800px'">
+          <md-tabs md-dynamic-height class="md-primary md-hue-1 maxedtab"  md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}" ng-style="'height':'100%'">
 
             <md-tab id="comicsTab" >
               <md-tab-label>Comics</md-tab-label>
@@ -108,9 +108,9 @@
 
 
             <md-tab id="tab1" >
-              <md-tab-label>Genress</md-tab-label>
+              <md-tab-label>Genres</md-tab-label>
               <md-tab-body>
-						
+
                TODO:Tabs Content
               </md-tab-body>
             </md-tab>

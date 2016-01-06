@@ -23,7 +23,7 @@
   "title": "Flash",
   "image": "assets/img/flash.jpg",
   "description": "Flash Comic",
-  "price": 2,
+  "price": "10",
   "ranking": 3,
   "votes": 1,
   "searches": 120,
