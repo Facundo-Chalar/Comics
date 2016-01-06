@@ -34,16 +34,18 @@ angular.module('comics').service('comics').service('UserService',function($local
           var user=this.findUser(nickname);
 
               if (user !== null && user.password === password) {
-                response = { success: true,message:'Login Ok' };
-				var today = new Date();
-				var expired = new Date(today);
-				expired.setDate(today.getDate() + 1);
-				$cookies.put('user', user.nickName, {expires : expired });
-				AuthenticationService.login(user);
-				$location.url('/');
-              } else {
-                response = { success: false, message: 'Username or password is incorrect' };
-              }            
+                          response = { success: true,message:'Login Ok' };
+				                  var today = new Date();
+				                  var expired = new Date(today);
+				                      expired.setDate(today.getDate() + 1);
+				                          $cookies.put('user', user.nickName, {expires : expired });
+				                              AuthenticationService.login(user);
+				                                  $location.url('/');
+         } else {
+          response = { success: false, message: 'Username or password is incorrect' };
+          
+          this.noerror=true;
+              }
             // callback(response);
         };
 

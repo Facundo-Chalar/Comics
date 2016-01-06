@@ -1,5 +1,6 @@
 <html lang="en" >
 <head>
+  <title>Comics Thor</title>
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
   <link rel="stylesheet" href="assets/style/style.css">
 
@@ -48,12 +49,15 @@ app.factory('AuthenticationService', function ($http, SessionService) {
   return {
 
     login: function (user) {
+
       SessionService.currentUser = user;
     },
     logout: function(){
+
       SessionService.currentUser=null;
     },
     isLoggedIn: function () {
+
       return SessionService.currentUser !== null;
     }
   };
@@ -62,17 +66,19 @@ app.factory('AuthenticationService', function ($http, SessionService) {
 app.factory('SessionService', function () {
   'use strict';
   return {
-    currentUser: null
+    var storedUser=$cookies.get('user');
+    console.log(storedUser);
+   currentUser: null
   };
-});    
+});
 
 angular.module('comics').controller('comicsController',function($scope,$http){
 
       $http.get('assets/json/comics.json').success(function(data) {
         $scope.listacomics=data;
       });
-	
-	
+
+
       $scope.order = function(predicate) {
         $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
         $scope.predicate = predicate;
@@ -87,6 +93,7 @@ angular.module('comics').controller('currentUserController',function($scope,Sess
 
     $scope.logout=function(){
     AuthenticationService.logout();
+
     $location.url('/login');
     };
     $scope.showAdvanced = function(ev) {

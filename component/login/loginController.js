@@ -6,10 +6,11 @@ angular.module('comics')
   $scope.$storage=$localStorage;
 
 
-  
+
 
   $scope.checkLogin=function(user){
     UserService.checkLogin(user.nickname,user.password);
+    
   };
 
   $scope.showAdvanced = function(ev) {

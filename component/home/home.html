@@ -2,7 +2,7 @@
 <header>
        <md-toolbar class='md-medium' ng-style="{'background-color':'rgb(33,150,243)'}" >
          <div class="md-toolbar-tools" ng-controller="currentUserController">
-             <h1>COMICS Thor    </h1>  <img src="assets/img/header.jpg" alt="image caption" align="right" ng-style="{'margin-left':'20%'}">  </md-icon>
+             <h1>Comics THOR    </h1><md-icon md-svg-icon="assets/icons/thor-hammer.svg"></md-icon>  <img src="assets/img/header.jpg" alt="image caption" align="right" ng-style="{'margin-left':'20%','border-bottom-left-radius':'20px','border-bottom-right-radius':'20px'}">  </md-icon>
 
              <span  align="right" ng-style="{'margin-left':'10%'}">
                <h1> <a href="" ng-click="showAdvanced($event)">Hello  {{currentUser().nickName}}</a></h1>
@@ -59,6 +59,30 @@
             <md-icon md-svg-src="assets/icons/search.svg"></md-icon>
            <input  ng-model="sidebar.search">
          </md-input-container>
+         <md-input-container class="md-block" flex-gt-sm>
+            <label>Character</label>
+            <md-select ng-model="user.state">
+              <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                {{state.abbrev}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Genre</label>
+            <md-select ng-model="user.state">
+              <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                {{state.abbrev}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Editions</label>
+            <md-select ng-model="user.state">
+              <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                {{state.abbrev}}
+              </md-option>
+            </md-select>
+          </md-input-container>
      </md-content>
    </md-sidenav>
 
@@ -70,10 +94,10 @@
           <md-tabs md-dynamic-height class="md-primary md-hue-1 maxedtab"  md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}" ng-style="'height':'100%'">
 
             <md-tab id="comicsTab" >
-              <md-tab-label>Comics</md-tab-label>
+              <md-tab-label><b>Comics</b></md-tab-label>
               <md-tab-body>
-                <div ng-repeat="comic in listacomics |filter:sidebar.search |orderBy:predicate:reverse" >
-                  <md-card ng-show="(comic.recommended && showRecommendedOnly) || (!showRecommendedOnly)" ng-style="{'width':'35%'}">
+                <div  layout="row">
+                  <md-card ng-show="(comic.recommended && showRecommendedOnly) || (!showRecommendedOnly)" ng-style="{'width':'30%'}" ng-repeat="comic in listacomics |filter:sidebar.search |orderBy:predicate:reverse">
                             <md-card-content>
                                  <img src="{{comic.image}}" class="md-card-image" alt="image caption">
                                      </md-card-content>
@@ -87,17 +111,18 @@
                                         <div class="md-media-sm card-media"></div>
                                       </md-card-title-media>
                                     </md-card-title>
+                                    <md-chips ng-show="comic.recommended">
+                                          <md-chip>Recommended</md-chip>
+                                    </md-chips>
                                     <md-progress-linear md-mode="determinate" value="{{comic.ranking * 10}}">
                                       <md-tooltip md-direction="top">
                                         {{comic.ranking * 10}}
                                      </md-tooltip>
                                     </md-progress-linear>
 
-                                    <md-card-actions layout="row" layout-align="begin center">
+                                    <md-card-actions layout="row" layout-align="end center">
 
-                                      <md-chips ng-show="comic.recommended">
-                                            <md-chip>Recommended</md-chip>
-                                      </md-chips>
+
                                       <md-button class="md-primary md-raised">Borrow</md-button>
                                       <md-button class="md-accent md-raised">Buy it now!</md-button>
                                     </md-card-actions>
@@ -108,7 +133,7 @@
 
 
             <md-tab id="tab1" >
-              <md-tab-label>Genres</md-tab-label>
+              <md-tab-label><b>Genres</b></md-tab-label>
               <md-tab-body>
 
                TODO:Tabs Content
@@ -116,14 +141,14 @@
             </md-tab>
 
             <md-tab id="tab2">
-              <md-tab-label>Editions</md-tab-label>
+              <md-tab-label><b>Editions</b></md-tab-label>
               <md-tab-body>
 
               </md-tab-body>
             </md-tab>
 
             <md-tab id="tab3">
-              <md-tab-label>Characters</md-tab-label>
+              <md-tab-label><b>Characters</b></md-tab-label>
               <md-tab-body>
               Tab 3
               </md-tab-body>

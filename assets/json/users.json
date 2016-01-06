@@ -1,0 +1,18 @@
+[
+{
+  "nickName": "admin",
+  "password": "1234567",
+  "firstName": "John",
+  "lastName": "Snow",
+  "email": "admin@comicsthor.com",
+  "usertype":"admin"
+},
+{
+  "nickName": "peter",
+  "password": "1234567",
+  "firstName": "Peter",
+  "lastName": "Smith",
+  "email": "peter@mail.com",
+  "usertype":"normal"
+}
+]

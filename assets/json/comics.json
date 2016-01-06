@@ -7,7 +7,9 @@
   "ranking": 7,
   "votes": 3,
   "searches": 250,
-  "recommended": true
+  "recommended": true,
+  "character":"Batman",
+  "genre":"Adventures"
 },
 {
   "title": "Superman",
@@ -17,16 +19,21 @@
   "ranking": 5,
   "votes": 2,
   "searches": 40,
-  "recommended": true
+  "recommended": true,
+  "character":"Superman",
+  "genre":"Sci-fi"
 },
 {
   "title": "Flash",
   "image": "assets/img/flash.jpg",
-  "description": "Flash Comic",
+  "description": "The fastest man alive comic!",
   "price": "10",
   "ranking": 3,
   "votes": 1,
   "searches": 120,
-  "recommended": false
+  "recommended": false,
+  "character":"Flash",
+  "genre":"Action"
 }
+
 ]
