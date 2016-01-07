@@ -77,7 +77,7 @@ angular.module('comics').controller('comicsController',function($scope,$http){
         $scope.listacomics=data;
       });
 
-	  $scope.Math=Math;
+	  
       $scope.order = function(predicate) {
         $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
         $scope.predicate = predicate;
@@ -101,9 +101,9 @@ angular.module('comics').controller('currentUserController',function($scope,Sess
     };
 
     $scope.logout=function(){
-		AuthenticationService.logout();
-		$cookies.remove('user');
-		$location.url('/login');
+	   	  AuthenticationService.logout();
+		    $cookies.remove('user');
+		    $location.url('/login');
     };
     $scope.showAdvanced = function(ev) {
       

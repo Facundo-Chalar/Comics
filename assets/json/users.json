@@ -5,14 +5,14 @@
   "firstName": "John",
   "lastName": "Snow",
   "email": "admin@comicsthor.com",
-  "usertype":"admin"
+  "isadmin":"true"
 },
 {
-  "nickName": "peter",
+  "nickName": "john",
   "password": "1234567",
-  "firstName": "Peter",
+  "firstName": "John",
   "lastName": "Smith",
-  "email": "peter@mail.com",
-  "usertype":"normal"
+  "email": "johnsmith@gmail.com",
+  "isadmin":"false"
 }
 ]
