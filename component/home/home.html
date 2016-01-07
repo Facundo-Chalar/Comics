@@ -2,10 +2,15 @@
 <header>
        <md-toolbar class='md-medium' ng-style="{'background-color':'rgb(33,150,243)'}" >
          <div class="md-toolbar-tools" ng-controller="currentUserController">
-             <h1>Comics THOR    </h1><md-icon md-svg-icon="assets/icons/thor-hammer.svg"></md-icon>  <img src="assets/img/header.jpg" alt="image caption" align="right" ng-style="{'margin-left':'20%','border-bottom-left-radius':'20px','border-bottom-right-radius':'20px'}">  </md-icon>
+             <h1>Comics THOR</h1>
+			 <md-icon md-svg-icon="assets/icons/thor-hammer.svg"></md-icon>  
+			 <img src="assets/img/header.jpg" alt="image caption" align="right" ng-style="{'margin-left':'20%','border-bottom-left-radius':'20px','border-bottom-right-radius':'20px'}">  
+			 </md-icon>
 
              <span  align="right" ng-style="{'margin-left':'5%'}">
-               <h1> <a href="" ng-click="showAdvanced($event)">Hello  {{currentUser().nickName}}</a></h1>
+                <h1> 
+				<a href="" ng-click="showAdvanced($event)">Hello  {{currentUser().nickName}}</a>
+				</h1>
 
                <md-button class="md-fab md-mini md-accent md-hue-1">
                  <md-tooltip md-direction="left">
@@ -87,18 +92,17 @@
    </md-sidenav>
 
    <md-content flex  layout="column">
-
-
      <div>
-       <md-content ng-controller="comicsController"  >
-          <md-tabs md-dynamic-height class="md-primary md-hue-1 maxedtab"  md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}" ng-style="'height':'100%'">
+       <md-content ng-controller="comicsController">
+          <md-tabs md-dynamic-height class="md-primary md-hue-1 maxedtab"  md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}" >
 
             <md-tab id="comicsTab" >
               <md-tab-label><b>Comics</b></md-tab-label>
-              <md-tab-body>
-                <div  layout="row">
-                  <md-card ng-show="(comic.recommended && showRecommendedOnly) || (!showRecommendedOnly)" ng-style="{'width':'30%'}" ng-repeat="comic in listacomics |filter:sidebar.search |orderBy:predicate:reverse">
-                            <md-card-content>
+              <md-tab-body>       
+                 <div  layout="row" flex layout-wrap>				 
+				 <md-card  ng-show="(comic.recommended && showRecommendedOnly) || (!showRecommendedOnly)" ng-style="{'width':'30%'}"  ng-init="cardcounter = 1" ng-repeat="comic in listacomics |filter:sidebar.search |orderBy:predicate:reverse"  flex="33" >																
+                            <md-card-content >
+							
                                  <img src="{{comic.image}}" class="md-card-image" alt="image caption">
                                      </md-card-content>
                                     <md-card-title>
@@ -119,44 +123,17 @@
                                         {{comic.ranking * 10}}
                                      </md-tooltip>
                                     </md-progress-linear>
-
                                     <md-card-actions layout="row" layout-align="end center">
-
-
                                       <md-button class="md-primary md-raised">Borrow</md-button>
                                       <md-button class="md-accent md-raised">Buy it now!</md-button>
-                                    </md-card-actions>
-                                  </md-card>
-                  </div>
+                                    </md-card-actions>								
+                                  </md-card>				
+				</div>
+                  
+				
               </md-tab-body>
             </md-tab>
-
-
-            <md-tab id="tab1" >
-              <md-tab-label><b>Genres</b></md-tab-label>
-              <md-tab-body>
-
-               TODO:Tabs Content
-              </md-tab-body>
-            </md-tab>
-
-            <md-tab id="tab2">
-              <md-tab-label><b>Editions</b></md-tab-label>
-              <md-tab-body>
-
-              </md-tab-body>
-            </md-tab>
-
-            <md-tab id="tab3">
-              <md-tab-label><b>Characters</b></md-tab-label>
-              <md-tab-body>
-              Tab 3
-              </md-tab-body>
-            </md-tab>
-
-
-
-          </md-tabs>
+		  </md-tabs>
         </md-content>
      </div>
    </md-content>

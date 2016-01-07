@@ -34,6 +34,42 @@
   "recommended": false,
   "character":"Flash",
   "genre":"Action"
+},
+{
+  "title": "Flash",
+  "image": "assets/img/flash.jpg",
+  "description": "The fastest man alive comic!",
+  "price": "10",
+  "ranking": 3,
+  "votes": 1,
+  "searches": 120,
+  "recommended": false,
+  "character":"Flash",
+  "genre":"Action"
+},
+{
+  "title": "Flash",
+  "image": "assets/img/flash.jpg",
+  "description": "The fastest man alive comic!",
+  "price": "10",
+  "ranking": 3,
+  "votes": 1,
+  "searches": 120,
+  "recommended": false,
+  "character":"Flash",
+  "genre":"Action"
+},
+{
+  "title": "Flash",
+  "image": "assets/img/flash.jpg",
+  "description": "The fastest man alive comic!",
+  "price": "10",
+  "ranking": 3,
+  "votes": 1,
+  "searches": 120,
+  "recommended": false,
+  "character":"Flash",
+  "genre":"Action"
 }
 
 ]
