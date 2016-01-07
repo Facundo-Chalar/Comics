@@ -44,7 +44,7 @@ angular.module('comics').service('comics').service('UserService',function($local
          } else {
           response = { success: false, message: 'Username or password is incorrect' };
           
-          this.noerror=true;
+         
               }
             // callback(response);
         };

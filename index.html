@@ -65,9 +65,8 @@ app.factory('AuthenticationService', function ($http, SessionService) {
 
 app.factory('SessionService', function () {
   'use strict';
-  return {
-    var storedUser=$cookies.get('user');
-    console.log(storedUser);
+  
+  return {  
    currentUser: null
   };
 });
@@ -86,18 +85,28 @@ angular.module('comics').controller('comicsController',function($scope,$http){
       };
 });
 
-angular.module('comics').controller('currentUserController',function($scope,SessionService,AuthenticationService, $mdDialog,$location){
+angular.module('comics').controller('currentUserController',function($scope,SessionService,AuthenticationService,UserService, $mdDialog,$location,$cookies){
     $scope.currentUser=function(){
-       return SessionService.currentUser;
+		var userCookie=$cookies.get('user');
+		if(userCookie!=null && userCookie!=''){
+		var searchResult=UserService.findUser(userCookie);		
+			SessionService.currentUser=searchResult;
+		}
+		if(SessionService.currentUser!==null){
+			return SessionService.currentUser;
+	   }else{
+		 $location.path('/login');
+		 return null;
+	   }
     };
 
     $scope.logout=function(){
-    AuthenticationService.logout();
-
-    $location.url('/login');
+		AuthenticationService.logout();
+		$cookies.remove('user');
+		$location.url('/login');
     };
     $scope.showAdvanced = function(ev) {
-      //Register Dialog config
+      
       $mdDialog.show({
         controller: DialogController,
         templateUrl: '/component/users/profile-dialog.html',
@@ -108,7 +117,6 @@ angular.module('comics').controller('currentUserController',function($scope,Sess
       })
       .then(function() {
         //Register acepted
-
       }, function() {
 
       });
@@ -127,8 +135,8 @@ angular.module('comics').controller('currentUserController',function($scope,Sess
           .config(function($mdThemingProvider) {
               $mdThemingProvider.theme('default')
               .primaryPalette('blue')
-              .accentPalette('red');
-            });
+              .accentPalet	te('red');
+            });		
   </script>
 </body>
 </html>
