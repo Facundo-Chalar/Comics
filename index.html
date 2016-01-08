@@ -83,9 +83,50 @@ angular.module('comics').controller('comicsController',function($scope,$http){
         $scope.predicate = predicate;
 
       };
+
+      $scope.genrelist=function(){
+      	var list=[];
+		list.push("All");
+      		for (comic in $scope.listacomics){
+      			var newGenre=$scope.listacomics[comic].genre;
+
+      			if (list.indexOf(newGenre) <0) {
+    				list.push(newGenre);				 
+				}      			
+      		}
+      	return list;	
+      }
+
+       $scope.characterslist=function(){
+      	var list=[];
+      		list.push("All");
+      		for (comic in $scope.listacomics){
+      			var newChar=$scope.listacomics[comic].character;
+
+      			if (list.indexOf(newChar) <0) {
+    				list.push(newChar);				 
+				}      			
+      		}
+      	return list;	
+      }
+
+           $scope.editoriallist=function(){
+      		var list=[];
+			list.push("All");
+      		for (comic in $scope.listacomics){
+      			var newEditorial=$scope.listacomics[comic].editorial;
+
+      			if (list.indexOf(newEditorial) <0) {
+    				list.push(newEditorial);				 
+				}      			
+      		}
+      	return list;	
+      }
+      
 });
 
 angular.module('comics').controller('currentUserController',function($scope,SessionService,AuthenticationService,UserService, $mdDialog,$location,$cookies){
+    
     $scope.currentUser=function(){
 		var userCookie=$cookies.get('user');
 		if(userCookie!=null && userCookie!=''){
@@ -100,6 +141,9 @@ angular.module('comics').controller('currentUserController',function($scope,Sess
 	   }
     };
 
+    $scope.isadmin=function(){
+    	return  $scope.currentUser().isadmin;
+    }
     $scope.logout=function(){
 	   	  AuthenticationService.logout();
 		    $cookies.remove('user');

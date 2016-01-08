@@ -9,7 +9,8 @@
   "searches": 250,
   "recommended": true,
   "character":"Batman",
-  "genre":"Adventures"
+  "genre":"Adventures",
+  "editorial":"DC Comics"
 },
 {
   "title": "Superman",
@@ -21,7 +22,8 @@
   "searches": 40,
   "recommended": true,
   "character":"Superman",
-  "genre":"Sci-fi"
+  "genre":"Sci-fi",
+  "editorial":"DC Comics"
 },
 {
   "title": "Flash",
@@ -33,7 +35,8 @@
   "searches": 120,
   "recommended": false,
   "character":"Flash",
-  "genre":"Action"
+  "genre":"Action",
+  "editorial":"DC Comics"
 },
 {
   "title": "Flash",
@@ -45,7 +48,21 @@
   "searches": 120,
   "recommended": false,
   "character":"Flash",
-  "genre":"Action"
+  "genre":"Action",
+  "editorial":"Marvel"
+},
+{
+  "title": "Flash",
+  "image": "assets/img/flash.jpg",
+  "description": "The fastest man alive comic batman!",
+  "price": "10",
+  "ranking": 3,
+  "votes": 1,
+  "searches": 120,
+  "recommended": false,
+  "character":"Flash",
+  "genre":"Action",
+  "editorial":"Marvel"
 },
 {
   "title": "Flash",
@@ -57,19 +74,8 @@
   "searches": 120,
   "recommended": false,
   "character":"Flash",
-  "genre":"Action"
-},
-{
-  "title": "Flash",
-  "image": "assets/img/flash.jpg",
-  "description": "The fastest man alive comic!",
-  "price": "10",
-  "ranking": 3,
-  "votes": 1,
-  "searches": 120,
-  "recommended": false,
-  "character":"Flash",
-  "genre":"Action"
+  "genre":"Action",
+  "editorial":"Marvel"
 }
 
 ]
