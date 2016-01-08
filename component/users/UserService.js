@@ -1,20 +1,18 @@
-angular.module('comics').service('comics').service('UserService',function($localStorage,$filter,$cookies,AuthenticationService,SessionService,$location,$http){
-
+angular.module('comics').service('comics').service('UserService',
+  function($localStorage,$filter,$cookies,AuthenticationService,SessionService,$location,$http){
         this.userList=[];
-       
 
       $http.get('assets/json/users.json').success(function(data) {
         this.userList=data;
         $localStorage.userList=angular.toJson(this.userList);        
       });
 
-        this.addUser=function(user){
+      this.addUser=function(user){
           this.userList=angular.fromJson($localStorage.userList);
             if(angular.isUndefined(this.userList)){
                 this.newList=[];               
                 this.newList.push(user);
                 $localStorage.userList=angular.toJson(this.newList);
-
             }else{
               this.userList.push(user);
               $localStorage.userList=angular.toJson(this.userList);
@@ -53,12 +51,4 @@ angular.module('comics').service('comics').service('UserService',function($local
               }
           callback(response);
         };
-
-
-
-		this.loginAdmin = function() {
-      // this should be replaced with a call to your API for user verification (or you could also do it in the service)
-		AuthenticationService.login({name: 'Admin', role: 'admin'});
-    };
-
 });

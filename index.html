@@ -1,9 +1,10 @@
 <html lang="en" >
 <head>
   <title>Comics Thor</title>
+  <!--Style -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
   <link rel="stylesheet" href="assets/style/style.css">
-
+  <!--Angular Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
@@ -12,167 +13,25 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
-	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
-
+  <!--App -->
   <script src="app/app.module.js"></script>
   <script src="app/app.route.js"></script>
+  <!--Services -->
   <script src="component/users/UserService.js"></script>
+  <script src="component/login/authenticationService.js"></script>
+  <script src="component/login/sessionService.js"></script>
+  <!--Controllers -->
+  <script src="component/comics/comicsController.js"></script>
   <script src="component/login/loginController.js"></script>
   <script src="component/register/registerController.js"></script>
-  <script src="shared/directives/passwordConfirm.js">
-  </script>
-
-  <script>
-  var app=angular.module('comics');
-  app.factory('RoleService', function ($http) {
-
-  'use strict';
-
-  var adminRoles = ['admin', 'editor'];
-  var otherRoles = ['user'];
-
-  return {
-    validateRoleAdmin: function (currentUser) {
-      return currentUser ? _.contains(adminRoles, currentUser.role) : false;
-    },
-
-    validateRoleOther: function (currentUser) {
-      return currentUser ? _.contains(otherRoles, currentUser.role) : false;
-    }
-  };
-});
-
-app.factory('AuthenticationService', function ($http, SessionService) {
-
-  'use strict';
-
-  return {
-
-    login: function (user) {
-
-      SessionService.currentUser = user;
-    },
-    logout: function(){
-
-      SessionService.currentUser=null;
-    },
-    isLoggedIn: function () {
-
-      return SessionService.currentUser !== null;
-    }
-  };
-});
-
-app.factory('SessionService', function () {
-  'use strict';
-  
-  return {  
-   currentUser: null
-  };
-});
-
-angular.module('comics').controller('comicsController',function($scope,$http){
-
-      $http.get('assets/json/comics.json').success(function(data) {
-        $scope.listacomics=data;
-      });
-
-	  
-      $scope.order = function(predicate) {
-        $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-        $scope.predicate = predicate;
-
-      };
-
-      $scope.genrelist=function(){
-      	var list=[];
-		list.push("All");
-      		for (comic in $scope.listacomics){
-      			var newGenre=$scope.listacomics[comic].genre;
-
-      			if (list.indexOf(newGenre) <0) {
-    				list.push(newGenre);				 
-				}      			
-      		}
-      	return list;	
-      }
-
-       $scope.characterslist=function(){
-      	var list=[];
-      		list.push("All");
-      		for (comic in $scope.listacomics){
-      			var newChar=$scope.listacomics[comic].character;
-
-      			if (list.indexOf(newChar) <0) {
-    				list.push(newChar);				 
-				}      			
-      		}
-      	return list;	
-      }
-
-           $scope.editoriallist=function(){
-      		var list=[];
-			list.push("All");
-      		for (comic in $scope.listacomics){
-      			var newEditorial=$scope.listacomics[comic].editorial;
-
-      			if (list.indexOf(newEditorial) <0) {
-    				list.push(newEditorial);				 
-				}      			
-      		}
-      	return list;	
-      }
-      
-});
-
-angular.module('comics').controller('currentUserController',function($scope,SessionService,AuthenticationService,UserService, $mdDialog,$location,$cookies){
-    
-    $scope.currentUser=function(){
-		var userCookie=$cookies.get('user');
-		if(userCookie!=null && userCookie!=''){
-		var searchResult=UserService.findUser(userCookie);		
-			SessionService.currentUser=searchResult;
-		}
-		if(SessionService.currentUser!==null){
-			return SessionService.currentUser;
-	   }else{
-		 $location.path('/login');
-		 return null;
-	   }
-    };
-
-    $scope.isadmin=function(){
-    	return  $scope.currentUser().isadmin;
-    }
-    $scope.logout=function(){
-	   	  AuthenticationService.logout();
-		    $cookies.remove('user');
-		    $location.url('/login');
-    };
-    $scope.showAdvanced = function(ev) {
-      
-      $mdDialog.show({
-        controller: DialogController,
-        templateUrl: '/component/users/profile-dialog.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose:true,
-        fullscreen: true
-      })
-      .then(function() {
-        //Register acepted
-      }, function() {
-
-      });
-    };
-
-});
-  </script>
-
+  <script src="component/users/currentUserController.js"></script>  
+  <!--Directives -->
+  <script src="shared/directives/passwordConfirm.js"></script>
 </head>
 
 <body ng-app="comics" ng-cloak ng-view ng-style="{'background-image':'url(/assets/img/LoginBackground.jpg)','background-position':'center','background-repeat':'no-repeat'}">
 
+<!--Color Schema Settings -->
   <script type="text/javascript">
         angular.module('comics')
           .config(function($mdThemingProvider) {
