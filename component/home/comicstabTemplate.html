@@ -1,0 +1,52 @@
+ <md-content flex  layout="column">
+        <div>
+          <md-content ng-controller="comicsController">
+          <md-tabs md-dynamic-height class="md-primary md-hue-1 maxedtab"  md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}" >
+            <md-tab id="comicsTab" >
+              <md-tab-label><b>Comics</b></md-tab-label>
+              <md-tab-body>       
+                 <div  layout="row" flex layout-wrap>				 
+				               <md-card  ng-show="(comic.recommended && showRecommendedOnly) || (!showRecommendedOnly)"   ng-init="cardcounter = 1" ng-repeat="comic in listacomics |filter:sidebar.search |filter:{character:filter.character}|filter:{editorial:filter.editorial}|filter:{genre:filter.genre}|orderBy:predicate:reverse"  flex="33" >													
+                            <md-card-content >							
+                                 <img src="{{comic.image}}" class="md-card-image" alt="image caption">
+                                     </md-card-content>
+                                     <div>
+                                    <md-card-title>
+                                      <md-card-title-text>
+                                        <span class="md-headline">{{comic.title}}</span>
+                                        <span class="md-subhead">{{comic.description}}</span>
+                                        <span class="md-subhead">Genre: {{comic.genre}}</span>
+                                        <span class="md-subhead">Editorial: {{comic.editorial}}</span>
+                                        <span class="md-subhead"><strong>${{comic.price}}</strong></span>
+                                      </md-card-title-text>
+                                      </div>
+                                      <md-card-title-media>
+                                        <div class="md-media-sm card-media"></div>
+                                      </md-card-title-media>
+                                    </md-card-title>
+
+                                    <div>
+                                        <md-chips ng-show="comic.recommended" >
+                                            <md-chip>Recommended</md-chip>
+                                        </md-chips>
+                                    </div>                                                                    
+                                   
+                                        <md-progress-linear md-mode="determinate" value="{{comic.ranking * 10}}">
+                                          <md-tooltip md-direction="top">
+                                          {{comic.ranking * 10}}
+                                          </md-tooltip>
+                                        </md-progress-linear>
+                                   
+
+                                    <md-card-actions layout="row" layout-align="end center">
+                                      <md-button class="md-primary md-raised">Borrow</md-button>
+                                      <md-button class="md-accent md-raised">Buy it now!</md-button>
+                                    </md-card-actions>								
+                                  </md-card>				
+				                </div>               
+                </md-tab-body>
+             </md-tab>
+		       </md-tabs>
+        </md-content>
+     </div>
+   </md-content>

@@ -1,0 +1,29 @@
+<header>
+       <md-toolbar class='md-medium' ng-style="{'background-color':'rgb(33,150,243)'}" >
+         <div class="md-toolbar-tools" ng-controller="currentUserController">
+             <h1>Comics THOR</h1>
+			       <md-icon md-svg-icon="assets/icons/thor-hammer.svg" ng-style="{'margin':'0'}"></md-icon>  
+			       <img src="assets/img/header.jpg" alt="image caption" align="right" ng-style="{'margin-left':'20%','border-bottom-left-radius':'20px','border-bottom-right-radius':'20px'}">  
+			       </md-icon>
+
+             <span  align="right" ng-style="{'margin-left':'5%'}">
+                <h1> 
+				          <a href="" ng-click="showAdvanced($event)">Hello <strong>{{currentUser().nickName}}<strong></a>
+				        </h1>
+
+               <md-button class="md-fab md-mini md-accent md-hue-1" ng-show="{{isadmin()}}">
+                 <md-tooltip md-direction="left">
+                    Admin Tools
+                </md-tooltip>
+                  <md-icon md-svg-icon="assets/icons/admin-icon.svg"></md-icon>
+                </md-button>
+                <md-button class="md-fab md-mini md-accent md-hue-1" ng-click="logout()">
+                  <md-tooltip md-direction="left">
+                     Logout
+                 </md-tooltip>
+                   <md-icon md-svg-icon="assets/icons/logout_door.svg"></md-icon>
+                 </md-button>
+             </span>
+          </div>
+       </md-toolbar>
+   </header>

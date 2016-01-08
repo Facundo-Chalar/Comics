@@ -1,0 +1,66 @@
+
+<md-sidenav class="md-sidenav-left md-whiteframe-z5" md-component-id="left" md-is-locked-open="true" ng-style="{'width':'200'}">
+<md-toolbar>
+       <md-button class="md-raised" ng-click="predicate=''">
+         All
+         <md-tooltip md-direction="right">
+            Show all comics unsorted
+        </md-tooltip>
+       </md-button>
+       <md-button class="md-raised" ng-click="order('ranking')">Top Ranked
+         <md-tooltip md-direction="right">
+            Sort by user ranking
+        </md-tooltip>
+         <span class="sortorder" ng-show="predicate === 'ranking'" ng-class="{reverse:reverse}"></span>
+       </md-button>
+       <md-button class="md-raised {{showRecommendedOnly?'md-primary md-hue-3':''}}" ng-click="showRecommendedOnly=!showRecommendedOnly">Recommended
+         <md-tooltip md-direction="right">
+            Show only our recommended comics!
+        </md-tooltip>
+       </md-button>
+       <md-button class="md-raised" ng-click="order('searches')">Top Searched
+         <md-tooltip md-direction="right">
+            Sort by most searched
+        </md-tooltip>
+                <span class="sortorder" ng-show="predicate === 'searches'" ng-class="{reverse:reverse}"></span>
+      </md-button>
+</md-toolbar>
+
+
+ <md-content >
+       <md-input-container >
+           <label>Search</label>
+            <md-tooltip md-direction="right">
+              Search inside all content
+            </md-tooltip>
+            <md-icon md-svg-src="assets/icons/search.svg"></md-icon>
+           <input  ng-model="sidebar.search">
+         </md-input-container>
+         <md-input-container class="md-block" flex-gt-sm>
+            <label>Character</label>
+            <md-select ng-model="filter.character">
+              <md-option ng-repeat="character in characterslist()" value="{{character==='All'?'':character}}">
+                {{character}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Genre</label>
+            <md-select ng-model="filter.genre">
+              <md-option ng-repeat="genre  in genrelist() track by $index" value="{{genre==='All'?'':genre}}">
+                {{genre}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Editions</label>
+            <md-select ng-model="filter.editorial">
+              <md-option ng-repeat="editorial in editoriallist()" value="{{editorial==='All'?'':editorial}}">
+                {{editorial}}
+              </md-option>
+            </md-select>
+        
+          </md-input-container>                    
+
+     </md-content>
+   </md-sidenav>
