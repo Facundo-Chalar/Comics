@@ -1,7 +1,7 @@
 angular.module('comics').service('comics').service('UserService',function($localStorage,$filter,$cookies,AuthenticationService,SessionService,$location,$http){
 
         this.userList=[];
-        
+       
 
       $http.get('assets/json/users.json').success(function(data) {
         this.userList=data;
@@ -36,23 +36,22 @@ angular.module('comics').service('comics').service('UserService',function($local
           return user;
         };
 
-       this.checkLogin=function(nickname,password){
+       this.checkLogin=function(nickname,password,callback){
           var user=this.findUser(nickname);
 
               if (user !== null && user.password === password) {
-                          response = { success: true,message:'Login Ok' };
+                          response = { success: true,message:'' };
 				                  var today = new Date();
 				                  var expired = new Date(today);
-				                      expired.setDate(today.getDate() + 1);
-				                          $cookies.put('user', user.nickName, {expires : expired });
-				                              AuthenticationService.login(user);
-				                                  $location.url('/');
-         } else {
-          response = { success: false, message: 'Username or password is incorrect' };
-          
-         
+				  
+                          expired.setDate(today.getDate() + 1);
+				                  $cookies.put('user', user.nickName, {expires : expired });
+				                  AuthenticationService.login(user);
+				                  $location.url('/');
+              } else {
+                  response = { success: false, message: 'Username or password is incorrect' };         
               }
-            // callback(response);
+          callback(response);
         };
 
 
