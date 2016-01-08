@@ -11,25 +11,22 @@
                                  <img src="{{comic.image}}" class="md-card-image" alt="image caption">
                                      </md-card-content>
                                      <div>
-                                    <md-card-title>
-                                      <md-card-title-text>
-                                        <span class="md-headline">{{comic.title}}</span>
-                                        <span class="md-subhead">{{comic.description}}</span>
-                                        <span class="md-subhead">Genre: {{comic.genre}}</span>
-                                        <span class="md-subhead">Editorial: {{comic.editorial}}</span>
-                                        <span class="md-subhead"><strong>${{comic.price}}</strong></span>
-                                      </md-card-title-text>
+                                      <md-card-title>
+                                        <md-card-title-text>
+                                          <span class="md-headline">{{comic.title}}</span>
+                                          <span class="md-subhead">{{comic.description}}</span>
+                                          <span class="md-subhead">Genre: {{comic.genre}}</span>
+                                          <span class="md-subhead">Editorial: {{comic.editorial}}</span>
+                                          <span class="md-subhead"><strong>${{comic.price}}</strong></span>
+                                        </md-card-title-text>
                                       </div>
                                       <md-card-title-media>
                                         <div class="md-media-sm card-media"></div>
                                       </md-card-title-media>
-                                    </md-card-title>
-
-                                    <div>
+                                    </md-card-title>                                  
                                         <md-chips ng-show="comic.recommended" >
                                             <md-chip>Recommended</md-chip>
-                                        </md-chips>
-                                    </div>                                                                    
+                                        </md-chips>                                                                                                
                                    
                                         <md-progress-linear md-mode="determinate" value="{{comic.ranking * 10}}">
                                           <md-tooltip md-direction="top">
