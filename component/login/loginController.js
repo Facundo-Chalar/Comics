@@ -17,7 +17,7 @@ angular.module('comics').controller('loginController',
       $scope.loginmessage='';
       $mdDialog.show({
         controller: DialogController,
-        templateUrl: '/component/register/register-dialog.html',
+        templateUrl: 'component/register/register-dialog.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true,
